@@ -3,26 +3,33 @@ import { ReactNode } from "react";
 import { useReducer } from "react";
 
 // OpenReplay
-import TrackerContext from "./context";
-import openReplayReducer, { IOpenReplayConfig, IPayload } from "./reducer";
+import { TrackerContext } from "./context";
+import openReplayReducer, {
+  IOpenReplayConfig,
+  IPayload,
+  ReportError,
+} from "./reducer";
 
 interface TrackerProviderProps {
   children: ReactNode;
   config: Partial<IOpenReplayConfig>;
 }
 
-const TrackerProvider = ({ children, config = {} }: TrackerProviderProps) => {
+export const TrackerProvider = ({
+  children,
+  config = {},
+}: TrackerProviderProps) => {
   const [, dispatch] = useReducer(openReplayReducer, { tracker: null, config });
   const value = {
     startTracking: () => dispatch({ type: "start" }),
     initTracker: () => dispatch({ type: "init" }),
     logEvent: (evnt: IPayload) => dispatch({ type: "logEvent", payload: evnt }),
     logIssue: (evnt: IPayload) => dispatch({ type: "logIssue", payload: evnt }),
+    reportError: (error: ReportError) =>
+      dispatch({ type: "reportError", payload: error }),
   };
 
   return (
     <TrackerContext.Provider value={value}>{children}</TrackerContext.Provider>
   );
 };
-
-export default TrackerProvider;

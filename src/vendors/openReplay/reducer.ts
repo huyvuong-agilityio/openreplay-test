@@ -12,9 +12,11 @@ export interface IPayload {
   data: any;
 }
 
+export type ReportError = Error | PromiseRejectedResult | ErrorEvent;
+
 export interface IOpenReplayAction {
   type: string;
-  payload?: IPayload;
+  payload?: IPayload | ReportError | any;
 }
 
 const userId = uuidV4();
@@ -65,6 +67,10 @@ const openReplayReducer = (state: any, action: IOpenReplayAction) => {
     }
     case "logIssue": {
       state.tracker?.issue(action.payload?.name, action.payload?.data);
+      return state;
+    }
+    case "reportError": {
+      state.tracker?.handleError(action.payload?.data);
       return state;
     }
   }

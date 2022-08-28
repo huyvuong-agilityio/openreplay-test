@@ -38,6 +38,12 @@ const RenderContent = () => {
               click_type: "issue",
             },
           });
+
+          try {
+            throw "error";
+          } catch (error) {
+            reportError(error);
+          }
         }}
       >
         Click Shop
@@ -57,7 +63,7 @@ const RenderContent = () => {
 function App() {
   return (
     <div className="App">
-      <h1>Deploy times: 16</h1>
+      <h1>Deploy times: 17</h1>
       <TrackerProvider
         config={{
           projectKey: "IPQJ2ytBAXqwnwxtPmgh",
