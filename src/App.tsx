@@ -42,10 +42,7 @@ const RenderContent = () => {
           try {
             throw "error";
           } catch (error) {
-            reportError({
-              name: "error",
-              whatError: "500",
-            });
+            reportError(new Error("Show Error", { cause: error as Error }));
           }
         }}
       >
@@ -66,7 +63,7 @@ const RenderContent = () => {
 function App() {
   return (
     <div className="App">
-      <h1>Deploy times: 18</h1>
+      <h1>Deploy times: 19</h1>
       <TrackerProvider
         config={{
           projectKey: "IPQJ2ytBAXqwnwxtPmgh",
