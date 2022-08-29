@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <TrackerProvider
       config={{
         // Add projectKey here.
-        projectKey: "",
+        projectKey: "IPQJ2ytBAXqwnwxtPmgh",
       }}
     >
       <Component {...pageProps} />
