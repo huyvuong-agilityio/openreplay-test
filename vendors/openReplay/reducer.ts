@@ -12,11 +12,9 @@ export interface IPayload {
   data: any;
 }
 
-export type ReportError = Error | PromiseRejectedResult | ErrorEvent;
-
 export interface IOpenReplayAction {
   type: string;
-  payload?: IPayload | ReportError | any;
+  payload?: IPayload;
 }
 
 const userId = uuidV4();
@@ -24,28 +22,30 @@ const userId = uuidV4();
 const newTracker = (config: IOpenReplayConfig) => {
   const tracker = new Tracker(config);
   tracker.setUserID(userId);
-  tracker.use(
-    trackerAssist({
-      callConfirm: {
-        text: "Our support team wants to help you",
-        confirmBtn: {
-          innerHTML: "👍 Accept",
+  import("@openreplay/tracker-assist").then(({ default: trackerAssist }) => {
+    tracker.use(
+      trackerAssist({
+        callConfirm: {
+          text: "Our support team wants to help you",
+          confirmBtn: {
+            innerHTML: "👍 Accept",
+          },
+          declineBtn: {
+            innerHTML: "❌ Not at this moment",
+          },
         },
-        declineBtn: {
-          innerHTML: "❌ Not at this moment",
+        controlConfirm: {
+          text: "Would you mind letting us control your application?",
+          confirmBtn: {
+            innerHTML: "👍 Accept",
+          },
+          declineBtn: {
+            innerHTML: "❌ Not at this moment",
+          },
         },
-      },
-      controlConfirm: {
-        text: "Would you mind letting us control your application?",
-        confirmBtn: {
-          innerHTML: "👍 Accept",
-        },
-        declineBtn: {
-          innerHTML: "❌ Not at this moment",
-        },
-      },
-    })
-  );
+      })
+    );
+  });
   return tracker;
 };
 
@@ -67,10 +67,6 @@ const openReplayReducer = (state: any, action: IOpenReplayAction) => {
     }
     case "logIssue": {
       state.tracker?.issue(action.payload?.name, action.payload?.data);
-      return state;
-    }
-    case "reportError": {
-      state.tracker?.handleError(action.payload?.data);
       return state;
     }
   }

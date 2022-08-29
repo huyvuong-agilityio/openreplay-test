@@ -1,19 +1,19 @@
 // Libraries
 import { createContext } from "react";
-import { IPayload, ReportError } from "./reducer";
+import { IPayload } from "./reducer";
 
 interface ITrackerContext {
   startTracking: () => void;
   initTracker: () => void;
   logEvent: (evnt: IPayload) => void;
   logIssue: (evnt: IPayload) => void;
-  reportError: (error: ReportError) => void;
 }
 
-export const TrackerContext = createContext<ITrackerContext>({
+const TrackerContext = createContext<ITrackerContext>({
   startTracking: () => {},
   initTracker: () => {},
   logEvent: () => {},
   logIssue: () => {},
-  reportError: () => {},
 });
+
+export default TrackerContext;
