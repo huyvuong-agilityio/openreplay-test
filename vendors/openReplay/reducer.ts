@@ -1,8 +1,7 @@
 // Libraries
 import Tracker, { Options } from "@openreplay/tracker";
-import trackerAssist from "@openreplay/tracker-assist";
 import { v4 as uuidV4 } from "uuid";
-
+import trackerProfiler from "@openreplay/tracker-profiler";
 export interface IOpenReplayConfig extends Options {
   projectKey: string;
 }
@@ -46,6 +45,14 @@ const newTracker = (config: IOpenReplayConfig) => {
       })
     );
   });
+  const profiler = tracker.use(trackerProfiler());
+
+  const randomFn = profiler("randomFn")(() => {
+    const a = Array.from({ length: 10000 }).map((a) => "11111111111111");
+  });
+
+  randomFn();
+
   return tracker;
 };
 
