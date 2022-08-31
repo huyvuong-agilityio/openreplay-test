@@ -16,12 +16,8 @@ const Home: NextPage = () => {
     }
   }, []);
 
-  const handleClick = () => {
-    try {
-      fetch("abcxsxd");
-    } catch (error) {
-      reportError(error as Error);
-    }
+  const handleClick = async () => {
+    const response = await fetch("abcxsxd");
   };
 
   return (
