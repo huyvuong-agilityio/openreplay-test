@@ -1,7 +1,6 @@
 // Libraries
 import Tracker, { Options } from "@openreplay/tracker";
 import { v4 as uuidV4 } from "uuid";
-import trackerProfiler from "@openreplay/tracker-profiler";
 export interface IOpenReplayConfig extends Options {
   projectKey: string;
 }
@@ -11,9 +10,11 @@ export interface IPayload {
   data: any;
 }
 
+export type ReportError = Error | PromiseRejectedResult | ErrorEvent;
+
 export interface IOpenReplayAction {
   type: string;
-  payload?: IPayload;
+  payload?: IPayload | ReportError | string;
 }
 
 const userId = uuidV4();
@@ -45,13 +46,6 @@ const newTracker = (config: IOpenReplayConfig) => {
       })
     );
   });
-  const profiler = tracker.use(trackerProfiler());
-
-  const randomFn = profiler("randomFn")(() => {
-    const a = Array.from({ length: 10000 }).map((a) => "11111111111111");
-  });
-
-  randomFn();
 
   return tracker;
 };
@@ -69,11 +63,18 @@ const openReplayReducer = (state: any, action: IOpenReplayAction) => {
       return state;
     }
     case "logEvent": {
-      state.tracker?.event(action.payload?.name, action.payload?.data);
+      const { name, data } = action.payload as IPayload;
+      state.tracker?.event(name, data);
       return state;
     }
     case "logIssue": {
-      state.tracker?.issue(action.payload?.name, action.payload?.data);
+      const { name, data } = action.payload as IPayload;
+      state.tracker?.issue(name, data);
+      return state;
+    }
+    case "reportError": {
+      const error = action.payload as ReportError;
+      state.tracker?.handleError(error);
       return state;
     }
   }

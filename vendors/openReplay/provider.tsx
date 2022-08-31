@@ -1,11 +1,14 @@
 // Libraries
 import { ReactNode } from "react";
 import { useReducer } from "react";
-import trackerProfiler from "@openreplay/tracker-profiler";
 
 // OpenReplay
 import TrackerContext from "./context";
-import openReplayReducer, { IOpenReplayConfig, IPayload } from "./reducer";
+import openReplayReducer, {
+  IOpenReplayConfig,
+  IPayload,
+  ReportError,
+} from "./reducer";
 
 interface TrackerProviderProps {
   children: ReactNode;
@@ -13,18 +16,17 @@ interface TrackerProviderProps {
 }
 
 const TrackerProvider = ({ children, config = {} }: TrackerProviderProps) => {
-  const [state, dispatch] = useReducer(openReplayReducer, {
+  const [, dispatch] = useReducer(openReplayReducer, {
     tracker: null,
     config,
   });
-  const profiler = state.tracker?.use(trackerProfiler());
-  // console.log(profiler);
   const value = {
     startTracking: () => dispatch({ type: "start" }),
     initTracker: () => dispatch({ type: "init" }),
     logEvent: (evnt: IPayload) => dispatch({ type: "logEvent", payload: evnt }),
     logIssue: (evnt: IPayload) => dispatch({ type: "logIssue", payload: evnt }),
-    profiler,
+    reportError: (error: ReportError) =>
+      dispatch({ type: "reportError", payload: error }),
   };
 
   return (

@@ -1,14 +1,14 @@
 // Libraries
 import { App } from "@openreplay/tracker";
 import { createContext } from "react";
-import { IPayload } from "./reducer";
+import { IPayload, ReportError } from "./reducer";
 
 interface ITrackerContext {
   startTracking: () => void;
   initTracker: () => void;
   logEvent: (evnt: IPayload) => void;
   logIssue: (evnt: IPayload) => void;
-  profiler: (name: string) => (fn: Function, thisArg?: any) => any;
+  reportError: (error: ReportError) => void;
 }
 
 const TrackerContext = createContext<ITrackerContext>({
@@ -16,7 +16,7 @@ const TrackerContext = createContext<ITrackerContext>({
   initTracker: () => {},
   logEvent: () => {},
   logIssue: () => {},
-  profiler: () => () => {},
+  reportError: () => {},
 });
 
 export default TrackerContext;

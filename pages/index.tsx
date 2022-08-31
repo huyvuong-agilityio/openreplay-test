@@ -6,22 +6,23 @@ import { TrackerContext } from "../vendors";
 import React from "react";
 
 const Home: NextPage = () => {
-  const { initTracker, startTracking, profiler, logIssue } =
+  const { initTracker, startTracking, reportError } =
     React.useContext(TrackerContext);
 
   React.useEffect(() => {
-    initTracker();
-    startTracking();
+    if (process.env.NODE_ENV === "production") {
+      initTracker();
+      startTracking();
+    }
   }, []);
 
-  // const handleClick = profiler("MyFunction")(() => {
-  //   logIssue({
-  //     name: "Click button",
-  //     data: {
-  //       purpose: "test profiler",
-  //     },
-  //   });
-  // });
+  const handleClick = () => {
+    try {
+      fetch("abcxsxd");
+    } catch (error) {
+      reportError(error as Error);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -31,7 +32,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <button onClick={handleClick}>Click here</button> */}
+      <button onClick={handleClick}>Click here</button>
     </div>
   );
 };
