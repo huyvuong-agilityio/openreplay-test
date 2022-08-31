@@ -18,6 +18,7 @@ const Home: NextPage = () => {
 
   const handleClick = async () => {
     const response = await fetch("abcxsxd");
+    throw new Error("Nice");
   };
 
   return (
