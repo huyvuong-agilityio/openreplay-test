@@ -1,17 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   productionBrowserSourceMaps: true,
-  webpack: {
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          enforce: "pre",
-          use: ["source-map-loader"],
-        },
-      ],
-    },
-  },
   rewrites: async () => {
     // do not leak source-maps in Vercel production deployments
     // but keep them in Vercel preview deployments with generated urls
