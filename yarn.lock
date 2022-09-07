@@ -154,24 +154,19 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@openreplay/tracker-assist@^3.5.15":
-  version "3.5.15"
-  resolved "https://registry.yarnpkg.com/@openreplay/tracker-assist/-/tracker-assist-3.5.15.tgz#269c94c751616ecc92b0f9dd217ae5cbab4ecd44"
-  integrity sha512-XW4EGSaUMucA0e9/wUdL6C3hahk2if5wQd0dirMA7YMFUlIvy8y69DlnimqWy+zNdnN56U6LZwOyfJcUBiXrEw==
+"@openreplay/tracker-assist@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@openreplay/tracker-assist/-/tracker-assist-3.6.0.tgz#a393b9e5358207d273f4c6009cb4446e3614a839"
+  integrity sha512-UCRg0PmE5KjMOJ/PoM+tZXITaEiUXL5kHvVMfQfG3V1j61kIwmCOOGfyZ9GrUVQk329Tdzb7EW1OcjBLhobBlA==
   dependencies:
     csstype "^3.0.10"
     peerjs "1.4.6"
     socket.io-client "^4.4.1"
 
-"@openreplay/tracker-profiler@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@openreplay/tracker-profiler/-/tracker-profiler-3.0.0.tgz#6228a75e38155bba3bcb59ccf2c4e3340bb4d2d3"
-  integrity sha512-/CXRHO7GRK9Mn398M3mYNILBkvZ5WNe/27rIsQivO2VuJJ/01wmjuQ4Rjio/pTJSfvt3IzjvygKXXbCXhkrBlQ==
-
-"@openreplay/tracker@^3.5.16":
-  version "3.5.16"
-  resolved "https://registry.yarnpkg.com/@openreplay/tracker/-/tracker-3.5.16.tgz#49de244654a86f3d6da922a88d84ffb900208a74"
-  integrity sha512-FNG5uAtsPiCZ8xavoU+0pFYm49kbdM1x1Ttc1w4BRJUrZwihS87KeubKf8fpwI9BAXFdFj6c+OY07ua4yM5HBw==
+"@openreplay/tracker@^3.6.1":
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/@openreplay/tracker/-/tracker-3.6.1.tgz#f504354a12fc9c8eff8673fec63ca13b988dbf18"
+  integrity sha512-lpZd86fI/rYk+syuAQiORHVW1GIKKwJal/+K+lhmnTodmSEM9gSVcb2REbwv9HUJhSO4zZo6894idqnkmZG86g==
   dependencies:
     error-stack-parser "^2.0.6"
 
@@ -1650,9 +1645,9 @@ slash@^3.0.0:
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
 
 socket.io-client@^4.4.1:
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/socket.io-client/-/socket.io-client-4.5.1.tgz#cab8da71976a300d3090414e28c2203a47884d84"
-  integrity sha512-e6nLVgiRYatS+AHXnOnGi4ocOpubvOUCGhyWw8v+/FxW8saHkinG6Dfhi9TU0Kt/8mwJIAASxvw6eujQmjdZVA==
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/socket.io-client/-/socket.io-client-4.5.2.tgz#9481518c560388c980c88b01e3cf62f367f04c96"
+  integrity sha512-naqYfFu7CLDiQ1B7AlLhRXKX3gdeaIMfgigwavDzgJoIUYulc1qHH5+2XflTsXTPY7BlPH5rppJyUjhjrKQKLg==
   dependencies:
     "@socket.io/component-emitter" "~3.1.0"
     debug "~4.3.2"
