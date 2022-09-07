@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    productionBrowserSourceMaps: true,
-  },
-  webpack: { devtool: "source-map" },
+  swcMinify: true,
+  productionBrowserSourceMaps: true,
 };
 
 module.exports = nextConfig;
