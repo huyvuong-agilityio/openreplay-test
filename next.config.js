@@ -2,12 +2,8 @@
 const nextConfig = {
   swcMinify: true,
   productionBrowserSourceMaps: true,
-  async headers() {
-    return [
-      {
-        headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
-      },
-    ];
+  webpack: {
+    devtool: "source-map",
   },
 };
 
