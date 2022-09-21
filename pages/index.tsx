@@ -4,10 +4,13 @@ import styles from "../styles/Home.module.css";
 
 import { TrackerContext } from "../vendors";
 import React from "react";
+import Image from "next/image";
 
 const Home: NextPage = () => {
   const { initTracker, startTracking, reportError } =
     React.useContext(TrackerContext);
+
+  console.log(process.env.NODE_ENV);
 
   React.useEffect(() => {
     if (process.env.NODE_ENV === "production") {
@@ -33,7 +36,15 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <button onClick={handleClick}>Click here</button>
+      <button onClick={handleClick}>Ceecek here</button>
+
+      <Image
+        className="abc"
+        src="/images/tree.jpg"
+        height="350px"
+        width="350px"
+        layout="fill"
+      />
     </div>
   );
 };
